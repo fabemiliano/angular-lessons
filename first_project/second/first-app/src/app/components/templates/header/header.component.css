@@ -1,0 +1,15 @@
+.header {
+  display:flex;
+  align-items: center;
+  background: linear-gradient(to top right, #1e1e1e, #fff);
+}
+
+.header a {
+  display:flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.header img {
+  width: 50px;
+}

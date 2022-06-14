@@ -1,0 +1,12 @@
+
+<p>Olá {{ nome }}</p>
+{{list}} 
+<input type="text" #input>
+<button (click)="save(input.value)">Salvar</button>
+<div *ngFor="let lis of list">
+  <p>{{lis}}</p>
+</div>
+<p>{{input.value + 'teste'}}</p>
+<app-header></app-header>
+<app-footer></app-footer>
+<app-nav></app-nav>
