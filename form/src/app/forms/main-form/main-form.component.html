@@ -1,0 +1,47 @@
+<form [formGroup]="form">
+  <div>
+    <label>
+      Nome
+    </label>
+    <input formControlName="nome" />
+  </div>
+  <div>
+    <label>
+      Idade
+    </label>
+    <input formControlName="idade" />
+  </div>
+  <div>
+    <label>
+      Profissão
+    </label>
+    <input formControlName="profissao" />
+  </div>
+  <div formGroupName="endereco">
+    Endereço
+    <div>
+      <label>
+        Rua
+      </label>
+      <input formControlName="rua" />
+    </div>
+    <div>
+      <label>
+        numero
+      </label>
+      <input formControlName="numero" />
+    </div>
+  </div>
+
+
+</form>
+
+<app-secondary-form [inputForm]="form"></app-secondary-form>
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<p>{{form.value | json}}</p>
+<p>{{form.status}}</p>

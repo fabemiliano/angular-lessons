@@ -1,0 +1,86 @@
+<!-- <app-dialog></app-dialog>
+<p>Teste</p>
+
+<mat-chip-list>Teste1</mat-chip-list>
+<mat-chip>Teste3</mat-chip>
+<mat-chip-input>Teste3</mat-chip-input>
+<div mat-chip-list>Teste2</div>
+
+<mat-chip *ngFor="let keyword of keywords" [selected]="keyword" [value]="keyword" >
+  {{keyword}}
+</mat-chip> -->
+
+<!--
+<div class="example-button-container">
+  <button mat-raised-button (click)="formControl.disable()">Disable form control</button>
+  <button mat-raised-button (click)="formControl.enable()">Enable form control</button>
+</div>
+
+<p>
+  <i>Select a focused chip by pressing <code>SPACE</code></i>
+</p>
+
+<mat-form-field class="example-chip-list" appearance="fill">
+  <mat-label>Video keywords</mat-label>
+  <mat-chip-list #chipList aria-label="Video keywords" multiple [formControl]="formControl">
+    <mat-chip
+        *ngFor="let keyword of keywords"
+        [selected]="keyword"
+        [value]="keyword"
+        (removed)="removeKeyword(keyword)">
+      {{keyword}}
+    </mat-chip>
+    <input
+      placeholder="New keyword..."
+      [matChipInputFor]="chipList"
+      (matChipInputTokenEnd)="addKeywordFromInput($event)">
+  </mat-chip-list>
+</mat-form-field>
+
+<p>
+  <b>The following keywords are selected:</b> {{formControl.value}}
+</p> -->
+<mat-chip [removable]="true">
+gteste
+<mat-icon matChipRemove>cancel</mat-icon>
+</mat-chip>
+
+<mat-form-field class="example-chip-list">
+  <mat-label>Favorite Fruits</mat-label>
+  <mat-chip-list (change)="change($event)" #chipList aria-label="Fruit selection">
+    <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable"
+             [removable]="removable" (removed)="remove(fruit)">
+      {{fruit.name}}
+      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+    </mat-chip>
+    <input placeholder="New fruit..."
+
+           [matChipInputFor]="chipList"
+           [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+           [matChipInputAddOnBlur]="addOnBlur"
+           chipList="[1, 2, 3]"
+           (matChipInputTokenEnd)="add($event)">
+  </mat-chip-list>
+</mat-form-field>
+
+
+<form class="example-form">
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>State</mat-label>
+    <input matInput
+           aria-label="State"
+           [matAutocomplete]="auto"
+           [formControl]="stateCtrl">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let state of filteredStates | async" [value]="state.name">
+        <img class="example-option-img" aria-hidden [src]="state.flag" height="25">
+        <span>{{state.name}}</span> |
+        <small>Population: {{state.population}}</small>
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+  <br>
+
+ 
+</form>

@@ -1,0 +1,17 @@
+<div [formGroup]="form">
+  <div formArrayName="lessons">
+    <div *ngFor="let lessonForm of lessons.controls">
+      <div [formGroup]="lessonForm">
+        <input formControlName="title"/>
+        <input formControlName="level"/>
+      </div>
+    </div>
+  </div>
+
+  <div formArrayName="tests">
+    <input [formControlName]="i" *ngFor="let test of tests.controls; let i = index" />
+    <p [formControlName]="i" *ngFor="let test of tests.controls; let i = index" >{{i}}</p>
+  </div>
+  <button (click)="add()">Add</button>
+  <p>{{form}}</p>
+</div>

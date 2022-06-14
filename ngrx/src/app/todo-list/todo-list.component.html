@@ -1,0 +1,5 @@
+<input [(ngModel)]="todo">
+<button (click)="addTodo()">Add</button>
+<div *ngFor="let addedTodo of todoList">
+  <p>{{addedTodo}}</p>
+</div>

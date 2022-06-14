@@ -1,0 +1,13 @@
+<form [formGroup]="problemForm">
+
+<input formControlName="problema1"/>
+<input formControlName="problema2"/>
+<div *ngIf="show">
+  <input [formControlName]="ar" *ngFor="let ar of arr" />
+</div>
+
+<button (click)="adicionar()">adicionar</button>
+
+</form>
+
+<p>{{problemForm.status}}</p>
