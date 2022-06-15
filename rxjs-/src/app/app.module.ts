@@ -12,6 +12,7 @@ import { FilterinComponent } from './filterin/filterin.component';
 import { TransformationComponent } from './transformation/transformation.component';
 import { UtilityComponent } from './utility/utility.component';
 import { FullListingComponent } from './full-listing/full-listing.component';
+import { SubjectComponent } from './subject/subject.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { FullListingComponent } from './full-listing/full-listing.component';
     FilterinComponent,
     TransformationComponent,
     UtilityComponent,
-    FullListingComponent
+    FullListingComponent,
+    SubjectComponent
   ],
   imports: [
     BrowserModule,

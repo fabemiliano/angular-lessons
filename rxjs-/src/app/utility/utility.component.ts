@@ -79,8 +79,86 @@ fromEvent(document, 'mousedown')
   .pipe(timeInterval(), tap(console.log))
   .subscribe(
     i =>
-      (document.body.innerText = `milliseconds since last click: ${i.interval}`)
+      (document.body.title = `milliseconds since last click: ${i.interval}`)
   );
+
+
+  //find Emit the first item that passes predicate then complete.
+
+  // RxJS v6+
+import { find, repeatWhen, mapTo, startWith, filter } from 'rxjs/operators';
+
+// elem ref
+const status: any = document.getElementById('status');
+
+// streams
+const clicks$ = fromEvent(document, 'click');
+
+clicks$
+  .pipe(
+    find((event: any) => event.target.id === 'box'),
+    mapTo('Found!'),
+    startWith('Find me!'),
+    // reset when click outside box
+    repeatWhen(() =>
+      clicks$.pipe(filter((event: any) => event.target.id !== 'box'))
+    )
+  )
+  .subscribe(message => (status.innerHTML = message));
+
+
+ // skip Skip the provided number of emitted values.
+
+ // RxJS v6+
+import { skip } from 'rxjs/operators';
+
+//emit every 1s
+const source3 = interval(1000);
+//skip the first 5 emitted values
+const example3 = source3.pipe(skip(5));
+//output: 5...6...7...8........
+const subscribe4 = example3.subscribe(val => console.log(val));
+
+// single Emit single item that passes expression.
+
+// RxJS v6+
+import { from } from 'rxjs';
+import { single } from 'rxjs/operators';
+
+//emit (1,2,3,4,5)
+const source5 = from([1, 2, 3, 4, 5]);
+//emit one item that matches predicate
+const example5 = source5.pipe(single(val => val === 4));
+//output: 4
+const subscribe5 = example5.subscribe(val => console.log(val));
+
+// ignoreElements Ignore everything but complete and error.
+
+// RxJS v6+
+import { ignoreElements } from 'rxjs/operators';
+
+//emit value every 100ms
+const source6 = interval(100);
+//ignore everything but complete
+const example6 = source6.pipe(take(5), ignoreElements());
+//output: "COMPLETE!"
+const subscribe6 = example6.subscribe(
+  val => console.log(`NEXT: ${val}`),
+  val => console.log(`ERROR: ${val}`),
+  () => console.log('COMPLETE!')
+);
+
+//throttle Emit value on the leading edge of an interval, but suppress new values until durationSelector has completed.
+
+// RxJS v6+
+import { throttle } from 'rxjs/operators';
+
+//emit value every 1 second
+const source7 = interval(1000);
+//throttle for 2 seconds, emit latest value
+const example7 = source7.pipe(throttle(val => interval(2000)));
+//output: 0...3...6...9
+const subscribe7 = example7.subscribe(val => console.log(val));
 
 @Component({
   selector: 'app-utility',
