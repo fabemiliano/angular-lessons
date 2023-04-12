@@ -4,29 +4,25 @@ import { map, Observable } from 'rxjs';
 import { AppState, decrement, increment } from '../store/app.state';
 
 interface teste {
-  appReducer: AppState
+  appReducer: AppState;
 }
 
 @Component({
   selector: 'app-contador',
   templateUrl: './contador.component.html',
-  styleUrls: ['./contador.component.scss']
+  styleUrls: ['./contador.component.scss'],
 })
-
 export class ContadorComponent implements OnInit {
-
   counter$: Observable<number>;
   constructor(private store: Store<teste>) {
-    this.counter$ = this.store.select('appReducer').pipe(map(e => e.counter));
+    this.counter$ = this.store.select('appReducer').pipe(map((e) => e.counter));
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
   increment() {
-    this.store.dispatch(increment({abc: 5}))
+    this.store.dispatch(increment({ abc: 5 }));
   }
   decrement() {
-    this.store.dispatch(decrement({payload: 9}))
+    this.store.dispatch(decrement({ payload: 9 }));
   }
-
 }
